@@ -33,5 +33,4 @@ public class MouvementRequestDTO {
 
     private Long serviceId;
 
-//    private Long utilisateurId;
 }

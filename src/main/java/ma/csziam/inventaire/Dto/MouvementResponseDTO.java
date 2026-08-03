@@ -29,6 +29,5 @@ public class MouvementResponseDTO {
 
     private Long serviceId;
 
-//    private Long utilisateurId;
 
 }

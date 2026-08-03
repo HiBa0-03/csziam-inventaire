@@ -5,6 +5,7 @@ import ma.csziam.inventaire.Dto.UtilisateurRequestDTO;
 import ma.csziam.inventaire.Dto.UtilisateurResponseDTO;
 import ma.csziam.inventaire.Entities.Utilisateur;
 import ma.csziam.inventaire.Repositories.UtilisateurRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UtilisateurServiceImpl implements  UtilisateurService {
     private final UtilisateurRepository utilisateurRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -22,7 +24,7 @@ public class UtilisateurServiceImpl implements  UtilisateurService {
 
         utilisateur.setNom(utilisateurDTO.getNom());
         utilisateur.setEmail(utilisateurDTO.getEmail());
-        utilisateur.setMotDePasse(utilisateurDTO.getMotDePasse());
+        utilisateur.setMotDePasse(passwordEncoder.encode(utilisateurDTO.getMotDePasse()));
         utilisateur.setTelephone(utilisateurDTO.getTelephone());
         utilisateur.setRoleUtilisateur(utilisateurDTO.getRoleUtilisateur());
 
@@ -85,7 +87,10 @@ public class UtilisateurServiceImpl implements  UtilisateurService {
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         utilisateur.setNom(dto.getNom());
         utilisateur.setEmail(dto.getEmail());
-        utilisateur.setMotDePasse(dto.getMotDePasse());
+        //meme si le pwd n'est pas modifier il ne  peux pas etre remplacer automatiquement
+        if (dto.getMotDePasse() != null && !dto.getMotDePasse().isBlank()) {
+            utilisateur.setMotDePasse(passwordEncoder.encode(dto.getMotDePasse()));
+        }
         utilisateur.setTelephone(dto.getTelephone());
         utilisateur.setRoleUtilisateur(dto.getRoleUtilisateur());
 

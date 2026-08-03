@@ -10,5 +10,7 @@ public interface CategorieService {
     CategorieResponseDTO creeCategorie(CategorieRequestDTO dto);
     CategorieResponseDTO findCategorieById(Long id);
     List<CategorieResponseDTO> findAllCategories();
+    CategorieResponseDTO updateCategorieById(Long id, CategorieRequestDTO dto);
+    void deleteCategorieById(Long id);
 
 }

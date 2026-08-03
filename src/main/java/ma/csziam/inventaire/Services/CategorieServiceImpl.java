@@ -58,5 +58,32 @@ public class CategorieServiceImpl implements CategorieService{
                 .toList();
 
     }
+    @Override
+    public CategorieResponseDTO updateCategorieById(Long id, CategorieRequestDTO dto) {
+
+        Categorie categorie = categorieRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Catégorie non trouvée"));
+
+        categorie.setNom(dto.getNom());
+        categorie.setDescription(dto.getDescription());
+
+        Categorie categorieSauvegarde = categorieRepository.save(categorie);
+
+        CategorieResponseDTO response = new CategorieResponseDTO();
+        response.setId(categorieSauvegarde.getId());
+        response.setNom(categorieSauvegarde.getNom());
+        response.setDescription(categorieSauvegarde.getDescription());
+
+        return response;
+    }
+
+    @Override
+    public void deleteCategorieById(Long id) {
+
+        Categorie categorie = categorieRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Catégorie non trouvée"));
+
+        categorieRepository.delete(categorie);
+    }
 
 }

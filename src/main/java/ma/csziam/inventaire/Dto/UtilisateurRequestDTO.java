@@ -20,6 +20,7 @@ public class UtilisateurRequestDTO {
 
     private String telephone;
 
+    @NotNull
     private RoleUtilisateur roleUtilisateur;
 
 }
