@@ -5,10 +5,12 @@ export interface ArticleResponse {
   etat: string;
   dateAcquisition: string;
   valeur: number;
-  categorieId: number;
-  laboratoireId: number;
-    serviceId: number;
-}
+    categorieId: number;
+    categorieNom: string;
+    laboratoireId?: number;
+    serviceId?: number;
+    affectation: string;
+  }
 
 
 
