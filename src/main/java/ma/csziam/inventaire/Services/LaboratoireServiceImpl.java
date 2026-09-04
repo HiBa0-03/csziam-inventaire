@@ -1,6 +1,7 @@
 package ma.csziam.inventaire.Services;
 
 import lombok.RequiredArgsConstructor;
+import ma.csziam.inventaire.Dto.LaboratoireRequestDTO;
 import ma.csziam.inventaire.Dto.LaboratoireResponseDTO;
 import ma.csziam.inventaire.Entities.Laboratoire;
 import ma.csziam.inventaire.Repositories.LaboratoireRepository;
@@ -44,4 +45,23 @@ public class LaboratoireServiceImpl implements LaboratoireService{
         return dto;
 
     }
+    @Override
+    public LaboratoireResponseDTO createLaboratoire(LaboratoireRequestDTO request) {
+
+        Laboratoire laboratoire = new Laboratoire();
+
+        laboratoire.setNom(request.getNom());
+        laboratoire.setDescription(request.getDescription());
+
+        Laboratoire sauvegarde = laboratoireRepository.save(laboratoire);
+
+        LaboratoireResponseDTO dto = new LaboratoireResponseDTO();
+
+        dto.setId(sauvegarde.getId());
+        dto.setNom(sauvegarde.getNom());
+        dto.setDescription(sauvegarde.getDescription());
+
+        return dto;
+    }
+
 }

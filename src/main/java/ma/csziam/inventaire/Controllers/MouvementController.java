@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/mouvements")
 @RequiredArgsConstructor
@@ -19,5 +21,10 @@ public class MouvementController {
     @PreAuthorize("hasRole('ADMIN')")
     public MouvementResponseDTO createMouvement(@RequestBody MouvementRequestDTO request) {
         return mouvementService.creeMouvement(request);
+    }
+    @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN','RESPONSABLE')")
+    public List<MouvementResponseDTO> getAllMouvements() {
+        return mouvementService.findAllMouvements();
     }
 }

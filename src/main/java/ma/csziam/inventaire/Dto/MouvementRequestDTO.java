@@ -21,16 +21,19 @@ public class MouvementRequestDTO {
 
     private String motif;
 
-    @NotBlank(message = "ancienne Localisation est obligatoire")
-    private String ancienneLocalisation;
+    // @NotBlank(message = "ancienne Localisation est obligatoire")
+    // private String ancienneLocalisation;
 
-    @NotBlank(message = " nouvelle Localisation est obligatoire")
-    private String nouvelleLocalisation;
+    // @NotBlank(message = " nouvelle Localisation est obligatoire")
+   // private String nouvelleLocalisation;
 
     private Long articleId;
 
     private Long laboratoireId;
 
     private Long serviceId;
+
+    private Long utilisateurId;
+
 
 }

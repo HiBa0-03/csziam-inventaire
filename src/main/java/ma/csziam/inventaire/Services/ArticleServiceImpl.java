@@ -75,11 +75,15 @@ public class ArticleServiceImpl implements ArticleService {
         response.setDateAcquisition(articleSauvegarde.getDateAcquisition());
         response.setValeur(articleSauvegarde.getValeur());
         response.setCategorieId(articleSauvegarde.getCategorie().getId());
+        response.setCategorieNom(articleSauvegarde.getCategorie().getNom());
         if (articleSauvegarde.getLaboratoire() != null) {
             response.setLaboratoireId(articleSauvegarde.getLaboratoire().getId());
+            response.setAffectation(articleSauvegarde.getLaboratoire().getNom());
         }
         if (articleSauvegarde.getService() != null) {
             response.setServiceId(articleSauvegarde.getService().getId());
+            response.setAffectation(articleSauvegarde.getService().getNom());
+
         }
         return response;
 
@@ -100,11 +104,16 @@ public class ArticleServiceImpl implements ArticleService {
                     dto.setDateAcquisition(article.getDateAcquisition());
                     dto.setValeur(article.getValeur());
                     dto.setCategorieId(article.getCategorie().getId());
+                    dto.setCategorieNom(article.getCategorie().getNom());
                     if (article.getLaboratoire() != null) {
                         dto.setLaboratoireId(article.getLaboratoire().getId());
+                        dto.setAffectation(article.getLaboratoire().getNom());
+
                     }
                     if (article.getService() != null) {
                         dto.setServiceId(article.getService().getId());
+                        dto.setAffectation(article.getService().getNom());
+
                     }
                     return dto;
 
@@ -123,13 +132,18 @@ public class ArticleServiceImpl implements ArticleService {
         dto.setDateAcquisition(article.getDateAcquisition());
         dto.setValeur(article.getValeur());
         dto.setCategorieId(article.getCategorie().getId());
+        dto.setCategorieNom(article.getCategorie().getNom());
 
     if (article.getLaboratoire() != null) {
         dto.setLaboratoireId(article.getLaboratoire().getId());
+        dto.setAffectation(article.getLaboratoire().getNom());
+
     }
 
     if (article.getService() != null) {
         dto.setServiceId(article.getService().getId());
+        dto.setAffectation(article.getService().getNom());
+
     }
         return dto;
     }
@@ -183,13 +197,18 @@ public class ArticleServiceImpl implements ArticleService {
         response.setDateAcquisition(articleSauvegarde.getDateAcquisition());
         response.setValeur(articleSauvegarde.getValeur());
         response.setCategorieId(articleSauvegarde.getCategorie().getId());
+        response.setCategorieNom(articleSauvegarde.getCategorie().getNom());
 
         if (articleSauvegarde.getLaboratoire() != null) {
             response.setLaboratoireId(articleSauvegarde.getLaboratoire().getId());
+            response.setAffectation(articleSauvegarde.getLaboratoire().getNom());
+
         }
 
         if (articleSauvegarde.getService() != null) {
             response.setServiceId(articleSauvegarde.getService().getId());
+            response.setAffectation(articleSauvegarde.getService().getNom());
+
         }
         return  response;
     }

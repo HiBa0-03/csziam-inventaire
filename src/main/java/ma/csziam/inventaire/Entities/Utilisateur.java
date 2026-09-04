@@ -30,10 +30,20 @@ public class Utilisateur implements UserDetails {
 
     private String motDePasse;
 
+    @Column(unique = true)
     private String telephone;
 
     @Enumerated(EnumType.STRING)
     private RoleUtilisateur roleUtilisateur;
+
+    @ManyToOne
+    @JoinColumn(name = "laboratoire_id")
+    private Laboratoire laboratoire;
+
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    private ServiceOrganisationnel service;
+
 
 
     @Override

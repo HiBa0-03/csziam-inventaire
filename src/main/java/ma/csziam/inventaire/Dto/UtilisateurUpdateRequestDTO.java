@@ -1,12 +1,15 @@
 package ma.csziam.inventaire.Dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 import ma.csziam.inventaire.Enums.RoleUtilisateur;
-import jakarta.validation.constraints.*;
-import lombok.*;
 
 @Getter
 @Setter
-public class UtilisateurRequestDTO {
+public class UtilisateurUpdateRequestDTO {
 
     @NotBlank(message = "Le nom est obligatoire")
     private String nom;
@@ -15,7 +18,6 @@ public class UtilisateurRequestDTO {
     @NotBlank(message = "L'email est obligatoire")
     private String email;
 
-    @NotBlank(message = "Le mot de passe est obligatoire")
     private String motDePasse;
 
     private String telephone;

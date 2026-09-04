@@ -20,5 +20,10 @@ public class CampagneResponseDTO  {
 
     private StatutInventaire statut;
 
+    private long totalArticles;
+
+    private long articlesInventories;
+
+    private double progression;
 
 }

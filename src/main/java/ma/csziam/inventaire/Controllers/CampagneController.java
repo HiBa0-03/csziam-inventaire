@@ -23,18 +23,19 @@ public class CampagneController {
     public CampagneResponseDTO createCampagne(@RequestBody CampagneRequestDTO campagneRequestDTO) {
         return campagneService.creerCampagne(campagneRequestDTO);
     }
-
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN','RESPONSABLE','AGENT_INVENTAIRE')")
     public List<CampagneResponseDTO> findAllCampagnes() {
         return campagneService.findAllCampagnes();
     }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','RESPONSABLE','AGENT_INVENTAIRE')")
     public CampagneResponseDTO findCampagneById(@PathVariable Long id) {
-        return  campagneService.findCampagneById(id);
+        return campagneService.findCampagneById(id);
     }
-    @GetMapping ("/annee/{annee}")
+
+    @GetMapping("/annee/{annee}")
     @PreAuthorize("hasAnyRole('ADMIN','RESPONSABLE','AGENT_INVENTAIRE')")
     public CampagneResponseDTO findCampagneByYear(@PathVariable int annee) {
         return campagneService.findCampagneByYear(annee);

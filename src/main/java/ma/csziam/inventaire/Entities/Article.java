@@ -2,6 +2,7 @@ package ma.csziam.inventaire.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ma.csziam.inventaire.Enums.EtatArticle;
 
 import java.time.LocalDate;
 
@@ -21,7 +22,7 @@ public class Article {
 
     private String numeroInventaire;
 
-    private String etat;
+    private EtatArticle etat;
 
     private LocalDate dateAcquisition;
 
@@ -35,5 +36,4 @@ public class Article {
 
     @ManyToOne
     private ServiceOrganisationnel service;
-
 }

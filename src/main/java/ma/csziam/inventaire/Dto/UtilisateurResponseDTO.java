@@ -17,5 +17,11 @@ public class UtilisateurResponseDTO {
 
         private RoleUtilisateur roleUtilisateur;
 
+        private Long laboratoireId;
+        private String laboratoireNom;
+
+        private Long serviceId;
+        private String serviceNom;
+
     }
 

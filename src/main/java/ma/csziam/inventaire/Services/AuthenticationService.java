@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import ma.csziam.inventaire.Dto.AuthenticationRequestDTO;
 import ma.csziam.inventaire.Dto.AuthenticationResponseDTO;
 import ma.csziam.inventaire.Dto.RegisterRequestDTO;
+import ma.csziam.inventaire.Dto.UtilisateurResponseDTO;
 import ma.csziam.inventaire.Entities.Utilisateur;
 import ma.csziam.inventaire.Repositories.UtilisateurRepository;
 import ma.csziam.inventaire.Security.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -60,4 +62,23 @@ public class AuthenticationService {
 
         return new AuthenticationResponseDTO(jwt);
     }
+
+    public UtilisateurResponseDTO getCurrentUser() {
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        Utilisateur utilisateur = utilisateurRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
+
+        UtilisateurResponseDTO dto = new UtilisateurResponseDTO();
+
+        dto.setId(utilisateur.getId());
+        dto.setNom(utilisateur.getNom());
+        dto.setEmail(utilisateur.getEmail());
+        dto.setTelephone(utilisateur.getTelephone());
+        dto.setRoleUtilisateur(utilisateur.getRoleUtilisateur());
+
+        return dto;
+    }
+
 }

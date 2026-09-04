@@ -2,6 +2,7 @@ package ma.csziam.inventaire.Dto;
 
 
 import lombok.*;
+import ma.csziam.inventaire.Enums.EtatArticle;
 
 import java.time.LocalDate;
 
@@ -16,15 +17,18 @@ public class ArticleResponseDTO {
 
     private String numeroInventaire;
 
-    private String etat;
+    private EtatArticle etat;
 
     private LocalDate dateAcquisition;
 
     private Double valeur;
 
     private Long categorieId;
+    private String categorieNom;
 
     private Long laboratoireId;
 
     private Long serviceId;
+
+    private String affectation;
 }

@@ -24,10 +24,15 @@ public class MouvementResponseDTO {
     private String nouvelleLocalisation;
 
     private Long articleId;
+    private String articleDesignation;
 
     private Long laboratoireId;
+    private String laboratoireNom;
+
 
     private Long serviceId;
+    private String serviceNom;
 
-
+    private Long utilisateurId;
+    private String utilisateurNom;
 }

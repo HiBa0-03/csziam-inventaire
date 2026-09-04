@@ -1,6 +1,7 @@
 package ma.csziam.inventaire.Controllers;
 
 import jakarta.validation.Valid;
+import ma.csziam.inventaire.Dto.UtilisateurUpdateRequestDTO;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,31 +28,24 @@ public class UtilisateurController {
         @ResponseStatus(HttpStatus.CREATED)
         @PreAuthorize("hasRole('ADMIN')")
         public UtilisateurResponseDTO creerUtilisateur( @Valid @RequestBody UtilisateurRequestDTO utilisateurDTO) {
-
             return utilisateurService.creerUtilisateur(utilisateurDTO);
         }
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
         public List<UtilisateurResponseDTO> getAllUtilisateurs(){
-
             return utilisateurService.getAllUtilisateurs();
-
         }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public UtilisateurResponseDTO getUtilisateurById(
-            @PathVariable Long id
-    ){
-
+    public UtilisateurResponseDTO getUtilisateurById(@PathVariable Long id){
         return utilisateurService.getUtilisateurByID(id);
-
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasRole('ADMIN')")
-    public UtilisateurResponseDTO updateUtilisateur(@PathVariable Long id, @Valid @RequestBody UtilisateurRequestDTO dto){
+    public UtilisateurResponseDTO updateUtilisateur(@PathVariable Long id, @Valid @RequestBody UtilisateurUpdateRequestDTO  dto){
             return utilisateurService.modifierUtilisateur(id, dto);
   }
  @DeleteMapping("/{id}")
@@ -60,7 +54,5 @@ public class UtilisateurController {
     public String deleteUtilisateur(@PathVariable Long id){
            return  utilisateurService.supprimerUtilisateurByID(id);
  }
-
-
 
 }

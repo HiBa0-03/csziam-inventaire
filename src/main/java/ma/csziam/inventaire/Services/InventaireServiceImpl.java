@@ -51,9 +51,6 @@ public class InventaireServiceImpl implements InventaireService {
             throw new RuntimeException("Cet article a déjà été inventorié pour cette campagne.");
         }
 
-
-
-
         Inventaire inventaire = new Inventaire();
 
         inventaire.setDateVerification(LocalDate.now());
@@ -93,7 +90,9 @@ public class InventaireServiceImpl implements InventaireService {
                     dto.setStatutPresence(inventaire.getStatutPresence());
                     dto.setCommentaire(inventaire.getCommentaire());
                     dto.setArticleId(inventaire.getArticle().getId());
+                    dto.setArticleDesignation(inventaire.getArticle().getDesignation());
                     dto.setAgentId(inventaire.getAgent().getId());
+                    dto.setAgentNom(inventaire.getAgent().getNom());
                     dto.setCampagneId(inventaire.getCampagne().getId());
 
                     return dto;
@@ -114,7 +113,9 @@ public class InventaireServiceImpl implements InventaireService {
         dto.setStatutPresence(inventaire.getStatutPresence());
         dto.setCommentaire(inventaire.getCommentaire());
         dto.setArticleId(inventaire.getArticle().getId());
+        dto.setArticleDesignation(inventaire.getArticle().getDesignation());
         dto.setAgentId(inventaire.getAgent().getId());
+        dto.setAgentNom(inventaire.getAgent().getNom());
         dto.setCampagneId(inventaire.getCampagne().getId());
 
         return dto;
@@ -176,6 +177,27 @@ public class InventaireServiceImpl implements InventaireService {
         return response;
     }
 
+    @Override
+    public List<InventaireResponseDTO> findInventairesByCampagne(Long campagneId) {
+        List<Inventaire> inventaires = inventaireRepository.findByCampagneId(campagneId);
+
+        return inventaires.stream()
+                .map(inventaire -> {
+
+                    InventaireResponseDTO dto = new InventaireResponseDTO();
+                    dto.setId(inventaire.getId());
+                    dto.setDateVerification(inventaire.getDateVerification());
+                    dto.setStatutPresence(inventaire.getStatutPresence());
+                    dto.setCommentaire(inventaire.getCommentaire());
+                    dto.setArticleId(inventaire.getArticle().getId());
+                    dto.setArticleDesignation(inventaire.getArticle().getDesignation());
+                    dto.setAgentId(inventaire.getAgent().getId());
+                    dto.setAgentNom(inventaire.getAgent().getNom());
+                    dto.setCampagneId(inventaire.getCampagne().getId());
+                    return dto;
+                })
+                .toList();
+    }
     @Override
     public void supprimerInventaire(Long id) {
 

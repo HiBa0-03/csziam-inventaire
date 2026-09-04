@@ -1,10 +1,10 @@
 package ma.csziam.inventaire.Enums;
 
 public enum TypeMouvement {
-    AFFECTATIONS,
+    AFFECTATION,
     TRANSFERT,
-    PRÊT,
-    RETOURT,
+    PRET,
+    RETOUR,
     REPARATION,
     MAINTENANCE,
     SORTIE_DEFINITIVE

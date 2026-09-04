@@ -1,8 +1,11 @@
 package ma.csziam.inventaire.Controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import ma.csziam.inventaire.Dto.LaboratoireRequestDTO;
 import ma.csziam.inventaire.Dto.LaboratoireResponseDTO;
 import ma.csziam.inventaire.Services.LaboratoireService;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,5 +25,11 @@ public class LaboratoireController {
     @PreAuthorize("hasAnyRole('ADMIN','RESPONSABLE','AGENT_INVENTAIRE')")
     public List < LaboratoireResponseDTO> getAllLaboratoires() {
         return laboratoireService.findAllLaboratoires();
+    }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ADMIN')")
+    public LaboratoireResponseDTO createLaboratoire(@Valid @RequestBody LaboratoireRequestDTO request) {
+        return laboratoireService.createLaboratoire(request);
     }
 }

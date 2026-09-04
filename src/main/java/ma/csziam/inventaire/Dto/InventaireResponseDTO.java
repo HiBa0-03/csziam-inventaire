@@ -18,8 +18,10 @@ public class InventaireResponseDTO {
     private String commentaire;
 
     private Long articleId;
+    private String articleDesignation;
 
     private Long agentId;
+    private String agentNom;
 
     private Long campagneId;
 }

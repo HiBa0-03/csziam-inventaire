@@ -42,6 +42,11 @@ public class InventaireController {
                                                     @RequestBody InventaireRequestDTO dto) {
         return inventaireService.modifierInventaire(id, dto);
     }
+    @GetMapping("/campagne/{campagneId}")
+    @PreAuthorize("hasAnyRole('ADMIN','RESPONSABLE','AGENT_INVENTAIRE')")
+    public List<InventaireResponseDTO> getInventairesByCampagne(@PathVariable Long campagneId) {
+        return inventaireService.findInventairesByCampagne(campagneId);
+    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

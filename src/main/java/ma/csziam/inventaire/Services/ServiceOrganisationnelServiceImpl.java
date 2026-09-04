@@ -1,6 +1,7 @@
 package ma.csziam.inventaire.Services;
 
 import lombok.RequiredArgsConstructor;
+import ma.csziam.inventaire.Dto.ServiceRequestDTO;
 import ma.csziam.inventaire.Dto.ServiceResponseDTO;
 import ma.csziam.inventaire.Entities.ServiceOrganisationnel;
 import ma.csziam.inventaire.Repositories.ServiceOrganisationnelRepository;
@@ -20,7 +21,6 @@ public class ServiceOrganisationnelServiceImpl implements ServiceOrganisationnel
         List<ServiceOrganisationnel> serviceOrg = serviceRepository.findAll();
         return serviceOrg .stream()
                 .map(service -> {
-
                     ServiceResponseDTO dto = new  ServiceResponseDTO();
 
                     dto.setId(service.getId());
@@ -42,6 +42,25 @@ public class ServiceOrganisationnelServiceImpl implements ServiceOrganisationnel
         dto.setDescription(serviceOrganisationnel.getDescription());
         return dto;
 
+    }
+    @Override
+    public ServiceResponseDTO createService(ServiceRequestDTO request) {
+
+        ServiceOrganisationnel service = new ServiceOrganisationnel();
+
+        service.setNom(request.getNom());
+        service.setDescription(request.getDescription());
+
+        ServiceOrganisationnel serviceSauvegarde =
+                serviceRepository.save(service);
+
+        ServiceResponseDTO dto = new ServiceResponseDTO();
+
+        dto.setId(serviceSauvegarde.getId());
+        dto.setNom(serviceSauvegarde.getNom());
+        dto.setDescription(serviceSauvegarde.getDescription());
+
+        return dto;
     }
 }
 

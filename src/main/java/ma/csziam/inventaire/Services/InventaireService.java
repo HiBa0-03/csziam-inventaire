@@ -13,6 +13,8 @@ public interface InventaireService {
 
     InventaireResponseDTO creerInventaire(InventaireRequestDTO dto);
 
+    List<InventaireResponseDTO> findInventairesByCampagne(Long campagneId);
+
     InventaireResponseDTO modifierInventaire(Long id, InventaireRequestDTO dto);
 
     void supprimerInventaire(Long id);
