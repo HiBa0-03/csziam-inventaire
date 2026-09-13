@@ -77,6 +77,10 @@ public class AuthenticationService {
         dto.setEmail(utilisateur.getEmail());
         dto.setTelephone(utilisateur.getTelephone());
         dto.setRoleUtilisateur(utilisateur.getRoleUtilisateur());
+        dto.setLaboratoireId(utilisateur.getLaboratoire() != null ? utilisateur.getLaboratoire().getId(): null);
+        dto.setLaboratoireNom(utilisateur.getLaboratoire() != null? utilisateur.getLaboratoire().getNom() : null);
+        dto.setServiceId(utilisateur.getService() != null ? utilisateur.getService().getId() : null);
+        dto.setServiceNom(utilisateur.getService() != null ? utilisateur.getService().getNom() : null);
 
         return dto;
     }

@@ -80,43 +80,21 @@ export default function AgentHistoriquePage() {
                 );
 
 
-                const campagnes =
-                    await getCampagnes();
+      const campagnes = await getCampagnes();
 
+const resultats = [];
 
-                const campagneEnCours =
-                    campagnes.find(
-                        (c) =>
-                            c.statut === "EN_COURS"
-                    );
+for (const campagne of campagnes) {
+    const data = await getInventairesByCampagne(campagne.id);
 
+    resultats.push(
+        ...data.filter(
+            (i) => i.agentId === currentUser.id
+        )
+    );
+}
 
-                if (!campagneEnCours) {
-
-                    setLoading(false);
-
-                    return;
-                }
-
-
-                const data =
-                    await getInventairesByCampagne(
-                        campagneEnCours.id
-                    );
-
-
-                const mesInventaires =
-                    data.filter(
-                        (i) =>
-                            i.agentId ===
-                            currentUser.id
-                    );
-
-
-                setInventaires(
-                    mesInventaires
-                );
-
+setInventaires(resultats);
 
             } catch (error) {
 

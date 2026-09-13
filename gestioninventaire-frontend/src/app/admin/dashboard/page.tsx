@@ -14,14 +14,17 @@ import { getMouvements } from "@/src/Services/MouvementService";
 import { ArticleResponse } from "@/src/types/ArticleResponse";
 import { UtilisateurResponse } from "@/src/types/UtilisateurResponse";
 import { MouvementResponse } from "@/src/types/MouvementResponse";
+import { CategorieResponse } from "@/src/types/CategorieResponse";
 import { getCurrentUser } from "@/src/Services/authService";
+import { getCategories } from "@/src/Services/categorieService";
 
 export default function Dashboard() {
 
     const [articles, setArticles] = useState<ArticleResponse[]>([]);
     const [utilisateurs, setUtilisateurs] = useState<UtilisateurResponse[]>([]);
     const [mouvements, setMouvements] = useState<MouvementResponse[]>([]);
- const [user, setUser] = useState<UtilisateurResponse | null>(null);
+    const [categories, setCategories] = useState<CategorieResponse[]>([]);
+    const [user, setUser] = useState<UtilisateurResponse | null>(null);
     useEffect(() => {
 
         const fetchData = async () => {
@@ -32,6 +35,7 @@ export default function Dashboard() {
                 setUtilisateurs(await getUtilisateurs());
                 setArticles(await getArticles());
                 setMouvements(await getMouvements());
+                setCategories(await getCategories());
                 
 
             } catch (error) {
@@ -130,7 +134,7 @@ export default function Dashboard() {
             <div className="flex justify-between gap-4">
 
     <div className="w-[22%]">
-        <CategoryCard total={utilisateurs.length} />
+        <CategoryCard total={categories.length} />
     </div>
 
     <div className="w-[22%]">

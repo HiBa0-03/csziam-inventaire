@@ -1,5 +1,9 @@
 package ma.csziam.inventaire.Controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import ma.csziam.inventaire.Dto.LaboratoireRequestDTO;
@@ -14,22 +18,52 @@ import java.util.List;
 @RestController
 @RequestMapping("/laboratoires")
 @RequiredArgsConstructor
+@Tag(
+        name = "Laboratoires",
+        description = "Gestion des laboratoires du Centre CSZIAM"
+)
+@SecurityRequirement(name = "bearerAuth")
 public class LaboratoireController {
-    final private LaboratoireService laboratoireService;
+
+    private final LaboratoireService laboratoireService;
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','RESPONSABLE','AGENT_INVENTAIRE')")
-    public LaboratoireResponseDTO getLaboratoire(@PathVariable Long id) {
+    @Operation(
+            summary = "Consulter un laboratoire",
+            description = "Retourne les informations d'un laboratoire à partir de son identifiant."
+    )
+    public LaboratoireResponseDTO getLaboratoire(
+            @Parameter(
+                    description = "Identifiant du laboratoire",
+                    example = "1"
+            )
+            @PathVariable Long id) {
+
         return laboratoireService.findLaboratoireById(id);
     }
+
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN','RESPONSABLE','AGENT_INVENTAIRE')")
-    public List < LaboratoireResponseDTO> getAllLaboratoires() {
+    @Operation(
+            summary = "Lister les laboratoires",
+            description = "Retourne la liste des laboratoires enregistrés."
+    )
+    public List<LaboratoireResponseDTO> getAllLaboratoires() {
+
         return laboratoireService.findAllLaboratoires();
     }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('ADMIN')")
-    public LaboratoireResponseDTO createLaboratoire(@Valid @RequestBody LaboratoireRequestDTO request) {
+    @Operation(
+            summary = "Créer un laboratoire",
+            description = "Permet à un administrateur de créer un nouveau laboratoire."
+    )
+    public LaboratoireResponseDTO createLaboratoire(
+            @Valid @RequestBody LaboratoireRequestDTO request) {
+
         return laboratoireService.createLaboratoire(request);
     }
 }

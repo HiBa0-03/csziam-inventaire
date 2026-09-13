@@ -253,10 +253,6 @@ export default function ResponsableMaterielPage() {
                                 </th>
 
                                 <th className="text-left px-5 py-4 font-medium text-gray-600">
-                                    N° inventaire
-                                </th>
-
-                                <th className="text-left px-5 py-4 font-medium text-gray-600">
                                     Catégorie
                                 </th>
 
@@ -307,13 +303,6 @@ export default function ResponsableMaterielPage() {
                                                         article.designation
                                                     }
                                                 </div>
-
-                                            </td>
-
-                                            <td className="px-5 py-4 text-gray-500">
-                                                {
-                                                    article.numeroInventaire
-                                                }
                                             </td>
 
                                             <td className="px-5 py-4 text-gray-500">

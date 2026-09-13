@@ -29,7 +29,7 @@ public class DataInitializer {
 
 
                 Utilisateur admin = Utilisateur.builder()
-                        .nom("H")
+                        .nom("Hiba")
                         .email("admin3@csziam.ma")
                         .motDePasse(passwordEncoder.encode("admin123"))
                         .telephone("0611111113")

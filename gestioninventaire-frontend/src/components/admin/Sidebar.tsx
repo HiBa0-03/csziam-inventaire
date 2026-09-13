@@ -36,7 +36,7 @@ const menuItems = [
   },
   {
     label: "Rapports",
-    href: "/reports",
+    href: "/admin/dashboard/reports",
     icon: ClipboardClock,
   },
 ];

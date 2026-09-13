@@ -31,6 +31,9 @@ export default function ArticleDatatable({
             case "neuf":
                 return "bg-blue-100 text-blue-700";
 
+             case "hors_service":
+                return "bg-red-100 text-red-700";
+
             default:
                 return "bg-gray-100 text-gray-700";
         }
