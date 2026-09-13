@@ -312,13 +312,6 @@ public class MouvementServiceImpl implements MouvementService {
             mouvement.setNouvelleLocalisation("Sortie définitive");
 
             Mouvement sauvegarde = mouvementRepository.save(mouvement);
-            /*
-             * Pour l'instant on conserve l'article.
-             *
-             * On décidera plus tard si une sortie définitive
-             * doit réellement supprimer l'article ou simplement
-             * le marquer comme sorti.
-             */
             article.setEtat(EtatArticle.HORS_SERVICE);
             articleRepository.save(article);
 

@@ -1,10 +1,4 @@
 import api from "./api";
-
-/**
- * Génère le rapport avec l'IA.
- * Cette opération peut prendre plusieurs minutes
- * car Ollama génère le contenu.
- */
 export const genererRapport = async (): Promise<string> => {
     const response = await api.post("/api/rapports/generer");
 
