@@ -1,0 +1,40 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: csziam-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: csziam
+      MYSQL_USER: csziam
+      MYSQL_PASSWORD: csziam
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "csziam", "-pcsziam"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: .
+    container_name: csziam-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build: gestioninventaire-frontend
+    container_name: csziam-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+volumes:
+ mysql_data:

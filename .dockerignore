@@ -1,0 +1,8 @@
+target/
+.git/
+.idea/
+*.iml
+*.log
+csziam_backup.sql
+gestioninventaire-frontend/node_modules/
+gestioninventaire-frontend/.next/

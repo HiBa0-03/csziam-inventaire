@@ -49,3 +49,6 @@ src/main/resources/application-dev.yml
 # Fichiers système
 .DS_Store
 Thumbs.db
+
+# Sauvegarde locale de la base Docker
+csziam_backup.sql
